@@ -3,14 +3,62 @@ from aiogram.enums import ParseMode
 from aiogram.filters import Command,CommandStart
 from aiogram.types import Message, ReplyKeyboardRemove
 import app.keyboards as kb
+from aiogram.fsm.context import FSMContext
+import state as st
 
 rt = Router()
 
-
 @rt.message(CommandStart())
-async def cmd_start(message: Message):
-    await message.answer('Привет!', reply_markup=kb.main)
+async def cmd_start(message: Message, state: FSMContext):
+    await message.answer('Привет!')
 
+    await state.set_state(st.MAIN.MAIN_MENU)
+    await message.answer('ГЛАВНОЕ МЕНЮ', reply_markup=kb.main)
+
+
+@rt.message(st.Main.MAIN_MENU)
+async def cmd_start(message: Message, state: FSMContext):
+    if message.text == "Обучение":
+        await message.answer('Выберите тему', reply_markup=kb.obch)
+        await state.set_state(st.MAIN.EDUC)
+
+    if message.text == "Задания":
+        await message.answer('здесь будут задания')
+
+
+@rt.message(st.Main.EDUC)
+async def cmd_start(message: Message, state: FSMContext):
+    if message.text == "Условия if else":
+        await message.answer('здесь будет теория по if else')
+        await state.set_state(st.topic.topic1)
+
+    if message.text == "Цикл for":
+        await message.answer('здесь будет теория по for')
+
+#остальные темы
+
+
+@rt.message(st.topic.topic1)
+async def cmd_start(message: Message, state: FSMContext):
+    await message.answer("Материал по 1й теме") #здесь то что должно быть в обучении
+
+    await state.set_state(st.topic.topic1_part2)
+    await message.answer("Выберите следующее действие", reply_markup = kb.obch1)
+
+
+
+@rt.message(st.topic.topic1_part2)
+async def cmd_start(message: Message, state: FSMContext):
+    if message.text == "Изучить другие темы":
+        await message.answer('Выберите тему', reply_markup=kb.obch)
+        await state.set_state(st.MAIN.EDUC)
+
+    if message.text == "Отработать материал":
+        await message.answer("Задания по теме", reply_markup=ReplyKeyboardRemove())
+
+
+
+'''
 
 @rt.message(F.text == "ВЕРНУТСЯ В ГЛАВНОЕ МЕНЮ")
 async def cmd_start(message: Message):
@@ -50,3 +98,4 @@ async def cmd_start(message: Message):
 @rt.message(F.text == "Строки")
 async def cmd_start(message: Message):
     await message.answer('5', reply_markup=ReplyKeyboardRemove())
+'''
