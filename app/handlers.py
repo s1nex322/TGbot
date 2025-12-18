@@ -4,7 +4,8 @@ from aiogram.filters import Command,CommandStart
 from aiogram.types import Message, ReplyKeyboardRemove
 import app.keyboards as kb
 from aiogram.fsm.context import FSMContext
-import state as st
+import app.state as st
+from aiogram.fsm.state import StatesGroup, State
 
 rt = Router()
 
@@ -16,7 +17,7 @@ async def cmd_start(message: Message, state: FSMContext):
     await message.answer('ГЛАВНОЕ МЕНЮ', reply_markup=kb.main)
 
 
-@rt.message(st.Main.MAIN_MENU)
+@rt.message(st.MAIN.MAIN_MENU)
 async def cmd_start(message: Message, state: FSMContext):
     if message.text == "Обучение":
         await message.answer('Выберите тему', reply_markup=kb.obch)
@@ -26,7 +27,7 @@ async def cmd_start(message: Message, state: FSMContext):
         await message.answer('здесь будут задания')
 
 
-@rt.message(st.Main.EDUC)
+@rt.message(st.MAIN.EDUC)
 async def cmd_start(message: Message, state: FSMContext):
     if message.text == "Условия if else":
         await message.answer('здесь будет теория по if else')

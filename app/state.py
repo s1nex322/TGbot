@@ -1,6 +1,6 @@
 from aiogram.fsm.state import StatesGroup, State
 
-class Main(StatesGroup):
+class MAIN(StatesGroup):
     MAIN_MENU = State()
     EDUC = State()
 
