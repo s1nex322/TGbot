@@ -59,8 +59,6 @@ async def cmd_start(message: Message, state: FSMContext):
 
 
 
-
-
 @rt.message(F.text == "ВЕРНУТСЯ В ГЛАВНОЕ МЕНЮ")
 async def cmd_start(message: Message, state: FSMContext):
     await message.answer('ГЛАВНОЕ МЕНЮ', reply_markup=kb.main)
