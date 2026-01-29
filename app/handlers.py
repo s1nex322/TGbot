@@ -59,12 +59,12 @@ async def cmd_start(message: Message, state: FSMContext):
 
 
 
-'''
+
 
 @rt.message(F.text == "ВЕРНУТСЯ В ГЛАВНОЕ МЕНЮ")
-async def cmd_start(message: Message):
+async def cmd_start(message: Message, state: FSMContext):
     await message.answer('ГЛАВНОЕ МЕНЮ', reply_markup=kb.main)
-
+    await state.set_state(st.MAIN.MAIN_MENU)
 
 @rt.message((F.text == "Обучение") | (F.text == "Изучить другие темы" ))
 async def cmd_start(message: Message):
@@ -99,4 +99,3 @@ async def cmd_start(message: Message):
 @rt.message(F.text == "Строки")
 async def cmd_start(message: Message):
     await message.answer('5', reply_markup=ReplyKeyboardRemove())
-'''
