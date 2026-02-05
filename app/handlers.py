@@ -6,6 +6,8 @@ import app.keyboards as kb
 from aiogram.fsm.context import FSMContext
 import app.state as st
 from aiogram.fsm.state import StatesGroup, State
+from task import tasks
+import random
 
 rt = Router()
 
@@ -30,35 +32,111 @@ async def cmd_start(message: Message, state: FSMContext):
 @rt.message(st.MAIN.EDUC)
 async def cmd_start(message: Message, state: FSMContext):
     if message.text == "Условия if else":
-        await message.answer('здесь будет теория по if else')
+        await message.answer('здесь будет теория по if else',reply_markup = kb.obch1)
         await state.set_state(st.topic.topic1)
 
     if message.text == "Цикл for":
-        await message.answer('здесь будет теория по for')
+        await message.answer('здесь будет теория по for', reply_markup = kb.obch1)
+        await state.set_state(st.topic.topic2)
 
-#остальные темы
+    if message.text == "Цикл while":
+        await message.answer('здесь будет теория по while', reply_markup = kb.obch1)
+        await state.set_state(st.topic.topic3)
+
+        if message.text == "Строки":
+        await message.answer('здесь будет теория по строкам', reply_markup = kb.obch1)
+        await state.set_state(st.topic.topic4)
+
+        if message.text == "Типы данных":
+        await message.answer('здесь будет теория по типам данных', reply_markup = kb.obch1)
+        await state.set_state(st.topic.topic5)
+
+    if message.text == "ВЕРНУТСЯ В ГЛАВНОЕ МЕНЮ":
+        await state.set_state(st.MAIN.MAIN_MENU)
+        await message.answer('ГЛАВНОЕ МЕНЮ', reply_markup=kb.main)
 
 
 @rt.message(st.topic.topic1)
-async def cmd_start(message: Message, state: FSMContext):
-    await message.answer("Материал по 1й теме") #здесь то что должно быть в обучении
-
-    await state.set_state(st.topic.topic1_part2)
-    await message.answer("Выберите следующее действие", reply_markup = kb.obch1)
-
-
-
-@rt.message(st.topic.topic1_part2)
 async def cmd_start(message: Message, state: FSMContext):
     if message.text == "Изучить другие темы":
         await message.answer('Выберите тему', reply_markup=kb.obch)
         await state.set_state(st.MAIN.EDUC)
 
-    if message.text == "Отработать материал":
-        await message.answer("Задания по теме", reply_markup=ReplyKeyboardRemove())
+    if message.text ==  "Отработать материал":
+        await message.answer(random.choice(tasks["if else"]), reply_markup=ReplyKeyboardRemove())
+        await message.answer("Отправьте свой ответ для проверки")
+        await state.set_state(st.checker.check_ifelse)
+
+
+@rt.message(st.topic.topic2)
+async def cmd_start(message: Message, state: FSMContext):
+    if message.text == "Изучить другие темы":
+        await message.answer('Выберите тему', reply_markup=kb.obch)
+        await state.set_state(st.MAIN.EDUC)
+
+    if message.text ==  "Отработать материал":
+        await message.answer(random.choice(tasks["for"]), reply_markup=ReplyKeyboardRemove())
+        await message.answer("Отправьте свой ответ для проверки")
+        await state.set_state(st.checker.check_for)
+
+
+@rt.message(st.topic.topic3)
+async def cmd_start(message: Message, state: FSMContext):
+    if message.text == "Изучить другие темы":
+        await message.answer('Выберите тему', reply_markup=kb.obch)
+        await state.set_state(st.MAIN.EDUC)
+
+    if message.text ==  "Отработать материал":
+        await message.answer(random.choice(tasks["while"]), reply_markup=ReplyKeyboardRemove())
+        await message.answer("Отправьте свой ответ для проверки")
+        await state.set_state(st.checker.check_while)
+
+
+@rt.message(st.topic.topic4)
+async def cmd_start(message: Message, state: FSMContext):
+    if message.text == "Изучить другие темы":
+        await message.answer('Выберите тему', reply_markup=kb.obch)
+        await state.set_state(st.MAIN.EDUC)
+
+    if message.text ==  "Отработать материал":
+        await message.answer(random.choice(tasks["datatypes"]), reply_markup=ReplyKeyboardRemove())
+        await message.answer("Отправьте свой ответ для проверки")
+        await state.set_state(st.checker.check_datatypes)
+
+
+@rt.message(st.topic.topic5)
+async def cmd_start(message: Message, state: FSMContext):
+    if message.text == "Изучить другие темы":
+        await message.answer('Выберите тему', reply_markup=kb.obch)
+        await state.set_state(st.MAIN.EDUC)
+
+    if message.text ==  "Отработать материал":
+        await message.answer(random.choice(tasks["strings"]), reply_markup=ReplyKeyboardRemove())
+        await message.answer("Отправьте свой ответ для проверки")
+        await state.set_state(st.checker.check_strings)
+
+
+@rt.message(st.checker.check_ifelse)
+async def cmd_start(message: Message, state: FSMContext):
+
+
+@rt.message(st.checker.check_for)
+async def cmd_start(message: Message, state: FSMContext):
+
+
+@rt.message(st.checker.check_while)
+async def cmd_start(message: Message, state: FSMContext):
+
+
+@rt.message(st.checker.check_datatypes)
+async def cmd_start(message: Message, state: FSMContext):
+
+@rt.message(st.checker.check_strings)
+async def cmd_start(message: Message, state: FSMContext):
 
 
 
+"""
 @rt.message(F.text == "ВЕРНУТСЯ В ГЛАВНОЕ МЕНЮ")
 async def cmd_start(message: Message, state: FSMContext):
     await message.answer('ГЛАВНОЕ МЕНЮ', reply_markup=kb.main)
@@ -67,8 +145,8 @@ async def cmd_start(message: Message, state: FSMContext):
 @rt.message((F.text == "Обучение") | (F.text == "Изучить другие темы" ))
 async def cmd_start(message: Message):
     await message.answer('Выберите тему', reply_markup=kb.obch)
-
-
+"""
+"""
 @rt.message((F.text == "Задания") | (F.text == "Отработать материал" ))
 async def cmd_start(message: Message):
     await message.answer('здесь будут задания')
@@ -97,3 +175,4 @@ async def cmd_start(message: Message):
 @rt.message(F.text == "Строки")
 async def cmd_start(message: Message):
     await message.answer('5', reply_markup=ReplyKeyboardRemove())
+"""

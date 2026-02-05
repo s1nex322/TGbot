@@ -18,3 +18,10 @@ class topic(StatesGroup):
     topic3 = State()
     topic4 = State()
     topic5 = State()
+
+class checker(StatesGroup):
+    check_ifelse = State()
+    check_for = State()
+    check_while = State()
+    check_datatypes = State()
+    check_strings = State()
