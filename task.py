@@ -1,5 +1,5 @@
 tasks = {
-    "if else":  ["task 1 if else","task 2 if else","task 3 if else"],
+    "if else":  ["Напишите код, который ищет сумму от 1 до 10, используя циклы"],
     "for":  ["task 1 for","task 2 for","task 3 for"],
     "while": ["task 1 while","task 2 while","task 3 while"],
     "datatypes": ["task 1 datatype","task 2 datatype","task 3 datatype"],

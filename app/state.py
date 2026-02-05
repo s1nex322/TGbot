@@ -3,6 +3,7 @@ from aiogram.fsm.state import StatesGroup, State
 class MAIN(StatesGroup):
     MAIN_MENU = State()
     EDUC = State()
+    TASK = State()
 
 class task(StatesGroup):
     task1 = State()
@@ -25,3 +26,7 @@ class checker(StatesGroup):
     check_while = State()
     check_datatypes = State()
     check_strings = State()
+
+class ifelse(StatesGroup):
+    task = State()
+    user_answer = State()
