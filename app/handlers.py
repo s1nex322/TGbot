@@ -43,11 +43,11 @@ async def cmd_start(message: Message, state: FSMContext):
         await message.answer('здесь будет теория по while', reply_markup = kb.obch1)
         await state.set_state(st.topic.topic3)
 
-        if message.text == "Строки":
+    if message.text == "Строки":
         await message.answer('здесь будет теория по строкам', reply_markup = kb.obch1)
         await state.set_state(st.topic.topic4)
 
-        if message.text == "Типы данных":
+    if message.text == "Типы данных":
         await message.answer('здесь будет теория по типам данных', reply_markup = kb.obch1)
         await state.set_state(st.topic.topic5)
 
