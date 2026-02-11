@@ -57,7 +57,7 @@ async def cmd_start(message: Message, state: FSMContext):
 @rt.message(st.MAIN.EDUC)
 async def cmd_start(message: Message, state: FSMContext):
     if message.text == "Условия if else":
-        await message.answer('здесь будет теория по if else',reply_markup = kb.obch1)
+        await message.answer('Условия *if/else* в Python — это конструкция для принятия решений в программе. Она позволяет выполнять разные блоки кода в зависимости от истинности условий.\n*Основные элементы:*\n*1.if* — проверяет условие, если оно истинно (True), выполняется блок кода после него\n*2.elif (else if)* — проверяет дополнительное условие, если предыдущие условия ложны\n*3.else* — выполняется, если все предыдущие условия ложны', parse_mode='Markdown', reply_markup=kb.obch1)',reply_markup = kb.obch1)
         await state.set_state(st.ifelse.task)
 
     if message.text == "Цикл for":
@@ -83,7 +83,7 @@ async def cmd_start(message: Message, state: FSMContext):
 @rt.message(st.MAIN.TASK)
 async def cmd_start(message: Message, state: FSMContext):
     if message.text == "Условия if else":
-        await message.answer('здесь будет теория по if else',reply_markup=kb.obch1)
+        await message.answer('Условия *if/else* в Python — это конструкция для принятия решений в программе. Она позволяет выполнять разные блоки кода в зависимости от истинности условий.\n*Основные элементы:*\n*1.if* — проверяет условие, если оно истинно (True), выполняется блок кода после него\n*2.elif (else if)* — проверяет дополнительное условие, если предыдущие условия ложны\n*3.else* — выполняется, если все предыдущие условия ложны', parse_mode='Markdown', reply_markup=kb.obch1)',reply_markup=kb.obch1)
         await state.set_state(st.ifelse.task)
 
     if message.text == "Цикл for":
@@ -184,7 +184,7 @@ async def cmd_start(message: Message, state: FSMContext):
         await message.answer('Выберите тему', reply_markup=kb.obch)
         await state.set_state(st.MAIN.EDUC)
 
-    if message.text ==  "Отработать материал":
+    if message.text == "Отработать материал":
         await message.answer(random.choice(tasks["strings"]), reply_markup=ReplyKeyboardRemove())
         await message.answer("Отправьте свой ответ для проверки")
         await state.set_state(st.checker.check_strings)

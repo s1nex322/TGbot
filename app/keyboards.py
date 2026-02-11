@@ -20,3 +20,11 @@ obch1 = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
     [KeyboardButton(text="Отработать материал")]
 ])
 
+tasks = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
+    [KeyboardButton(text="Условия if else")],
+    [KeyboardButton(text="Цикл for")],
+    [KeyboardButton(text="Цикл while")],
+    [KeyboardButton(text="Типы данных")],
+    [KeyboardButton(text="Строки")],
+    [KeyboardButton(text="ВЕРНУТСЯ В ГЛАВНОЕ МЕНЮ")]
+])
