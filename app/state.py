@@ -20,6 +20,11 @@ class topic(StatesGroup):
     topic4 = State()
     topic5 = State()
 
+
+class Navigation(StatesGroup):
+    Main_Task = State()
+
+
 class checker(StatesGroup):
     check_ifelse = State()
     check_for = State()
@@ -28,5 +33,8 @@ class checker(StatesGroup):
     check_strings = State()
 
 class ifelse(StatesGroup):
+    flag = State()
+    task1 = State()
     task = State()
     user_answer = State()
+
