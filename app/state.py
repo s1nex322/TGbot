@@ -32,7 +32,8 @@ class checker(StatesGroup):
     check_datatypes = State()
     check_strings = State()
 
-class ifelse(StatesGroup):
+class task_class(StatesGroup):
+    topic = State()
     flag = State()
     task1 = State()
     task = State()

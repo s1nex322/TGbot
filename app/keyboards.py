@@ -51,7 +51,7 @@ def number_keyboard(n: int) -> ReplyKeyboardMarkup:
 
     # Добавляем строку с Random и Назад
     rows.append([
-        KeyboardButton(text="🎲 Random"),
+        KeyboardButton(text="🎲 случайное задание"),
         KeyboardButton(text="❌ назад")
     ])
 
